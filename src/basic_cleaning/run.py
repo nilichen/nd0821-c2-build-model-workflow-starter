@@ -27,6 +27,8 @@ def go(args):
     min_price = args.min_price
     max_price = args.max_price
     df = df[df['price'].between(min_price, max_price)].copy()
+    df = df[df['longitude'].between(-74.25, -73.50)
+            & df['latitude'].between(40.5, 41.2)].copy()
     # Convert last_review to datetime
     df['last_review'] = pd.to_datetime(df['last_review'])
     df.to_csv(args.output_artifact, index=False)
